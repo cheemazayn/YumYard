@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-paper font-sans text-ink antialiased; }
+  h1, h2, h3, h4 { @apply font-display tracking-tight; }
+  :focus-visible { outline: 2px solid #F0A81F; outline-offset: 2px; }
+  ::selection { background: #F0A81F55; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-forest text-white hover:bg-forest-dark; }
+  .btn-accent { @apply btn bg-saffron text-ink hover:bg-saffron-dark; }
+  .btn-outline { @apply btn border border-ink/20 bg-white text-ink hover:border-ink/50; }
+  .btn-ghost { @apply btn text-ink/70 hover:bg-ink/5; }
+  .btn-danger { @apply btn bg-chili text-white hover:bg-red-800; }
+  .btn-sm { @apply px-3 py-1.5 text-xs; }
+  .input { @apply w-full rounded-md border border-ink/20 bg-white px-3 py-2 text-sm placeholder:text-ink/40 focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/20 disabled:bg-mist; }
+  .label { @apply mb-1 block text-xs font-semibold text-ink/70; }
+  .card { @apply rounded-lg border border-ink/10 bg-white; }
+  .badge { @apply inline-flex items-center rounded px-2 py-0.5 text-xs font-semibold; }
+  .th { @apply px-4 py-2.5 text-left text-xs font-semibold text-ink/60; }
+  .td { @apply px-4 py-3 text-sm; }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  #receipt, #receipt * { visibility: visible; }
+  #receipt { position: absolute; left: 0; top: 0; width: 80mm; }
+}
+
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(240,168,31,.5); } 100% { box-shadow: 0 0 0 12px rgba(240,168,31,0); } }
+.pulse-ring { animation: pulse-ring 1.6s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) { .pulse-ring { animation: none; } }
